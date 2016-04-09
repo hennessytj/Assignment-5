@@ -1,0 +1,166 @@
+ROOT Q1
+TEXT Q Q1 Pain?
+* Define the left side of the tree
+NODE Q Q2 Q1 N
+TEXT Q Q2 Cough?
+NODE Q Q3 Q2 N
+TEXT Q Q3 Fever?
+NODE D D1 Q2 Y
+TEXT D D1 Treat common cold
+NODE D D2 Q3 Y
+TEXT D D2 Treat Flu
+NODE D D3 Q3 N
+TEXT D D3 Thank you for visiting
+PRINT
+
+   Q1 Pain?
+         D1 Treat common cold
+      Q2 Cough?
+            D2 Treat Flu
+         Q3 Fever?
+            D3 Thank you for visiting
+
+* Define the right side of the tree
+NODE Q Q5 Q1 Y
+TEXT Q Q5 Tenderness in abdomen?
+NODE Q Q6 Q5 N
+TEXT Q Q6 Pain in Throat?
+NODE Q Q7 Q6 N
+TEXT Q Q7 Fever?
+NODE D D5 Q7 N
+TEXT D D5 Prescribe Acetaminophen
+NODE D D6 Q7 Y
+TEXT D D6 Treat Flu
+NODE D D7 Q6 Y
+TEXT D D7 Administer Strep Test
+NODE Q Q8 Q5 Y
+TEXT Q Q8 X-ray shows stones?
+NODE D D8 Q8 N
+TEXT D D8 Schedule Appendectomy
+NODE D D9 Q8 Y 
+TEXT D D9 Treat kidney stones
+PRINT
+
+            D9 Treat kidney stones
+         Q8 X-ray shows stones?
+            D8 Schedule Appendectomy
+      Q5 Tenderness in abdomen?
+            D7 Administer Strep Test
+         Q6 Pain in Throat?
+               D6 Treat Flu
+            Q7 Fever?
+               D5 Prescribe Acetaminophen
+   Q1 Pain?
+         D1 Treat common cold
+      Q2 Cough?
+            D2 Treat Flu
+         Q3 Fever?
+            D3 Thank you for visiting
+
+* Try the HELP function
+HELP YYYYYYY
+	Q1: Pain? Y
+	Q5: Tenderness in abdomen? Y
+	Q8: X-ray shows stones? Y
+	D9: Treat kidney stones
+HELP NNNNNNN
+	Q1: Pain? N
+	Q2: Cough? N
+	Q3: Fever? N
+	D3: Thank you for visiting
+HELP YNYNYNYN
+	Q1: Pain? Y
+	Q5: Tenderness in abdomen? N
+	Q6: Pain in Throat? Y
+	D7: Administer Strep Test
+HELP NYNYNYNY
+	Q1: Pain? N
+	Q2: Cough? Y
+	D1: Treat common cold
+* Try some warning cases for the NODE command
+NODE D D10 Q9 Y
+Warning: parent does not exist
+TEXT D D10 Oh no!!!!
+NODE Q Q8 Q5 Y
+Warning: attempting to insert a node that already exists
+PRINT
+
+            D9 Treat kidney stones
+         Q8 X-ray shows stones?
+            D8 Schedule Appendectomy
+      Q5 Tenderness in abdomen?
+            D7 Administer Strep Test
+         Q6 Pain in Throat?
+               D6 Treat Flu
+            Q7 Fever?
+               D5 Prescribe Acetaminophen
+   Q1 Pain?
+         D1 Treat common cold
+      Q2 Cough?
+            D2 Treat Flu
+         Q3 Fever?
+            D3 Thank you for visiting
+
+* Delete Q3 from the tree
+DELETE Q3
+PRINT
+
+            D9 Treat kidney stones
+         Q8 X-ray shows stones?
+            D8 Schedule Appendectomy
+      Q5 Tenderness in abdomen?
+            D7 Administer Strep Test
+         Q6 Pain in Throat?
+               D6 Treat Flu
+            Q7 Fever?
+               D5 Prescribe Acetaminophen
+   Q1 Pain?
+         D1 Treat common cold
+      Q2 Cough?
+
+NODE D D5 Q2 N
+Warning: attempting to insert a node that already exists
+PRINT
+
+            D9 Treat kidney stones
+         Q8 X-ray shows stones?
+            D8 Schedule Appendectomy
+      Q5 Tenderness in abdomen?
+            D7 Administer Strep Test
+         Q6 Pain in Throat?
+               D6 Treat Flu
+            Q7 Fever?
+               D5 Prescribe Acetaminophen
+   Q1 Pain?
+         D1 Treat common cold
+      Q2 Cough?
+
+HELP NNNNNNN
+	Q1: Pain? N
+	Q2: Cough? N
+	*** Warning:  NULL returned from HELP
+* Actually give Q2 a new N
+NODE D D11 Q2 N
+TEXT D D11 Time to party
+PRINT
+
+            D9 Treat kidney stones
+         Q8 X-ray shows stones?
+            D8 Schedule Appendectomy
+      Q5 Tenderness in abdomen?
+            D7 Administer Strep Test
+         Q6 Pain in Throat?
+               D6 Treat Flu
+            Q7 Fever?
+               D5 Prescribe Acetaminophen
+   Q1 Pain?
+         D1 Treat common cold
+      Q2 Cough?
+         D11 Time to party
+
+HELP NNNNNNN
+	Q1: Pain? N
+	Q2: Cough? N
+	D11: Time to party
+* Finished
+

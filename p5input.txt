@@ -1,0 +1,56 @@
+ROOT Q1
+TEXT Q Q1 Pain?
+* Define the left side of the tree
+NODE Q Q2 Q1 N
+TEXT Q Q2 Cough?
+NODE Q Q3 Q2 N
+TEXT Q Q3 Fever?
+NODE D D1 Q2 Y
+TEXT D D1 Treat common cold
+NODE D D2 Q3 Y
+TEXT D D2 Treat Flu
+NODE D D3 Q3 N
+TEXT D D3 Thank you for visiting
+PRINT
+* Define the right side of the tree
+NODE Q Q5 Q1 Y
+TEXT Q Q5 Tenderness in abdomen?
+NODE Q Q6 Q5 N
+TEXT Q Q6 Pain in Throat?
+NODE Q Q7 Q6 N
+TEXT Q Q7 Fever?
+NODE D D5 Q7 N
+TEXT D D5 Prescribe Acetaminophen
+NODE D D6 Q7 Y
+TEXT D D6 Treat Flu
+NODE D D7 Q6 Y
+TEXT D D7 Administer Strep Test
+NODE Q Q8 Q5 Y
+TEXT Q Q8 X-ray shows stones?
+NODE D D8 Q8 N
+TEXT D D8 Schedule Appendectomy
+NODE D D9 Q8 Y 
+TEXT D D9 Treat kidney stones
+PRINT
+* Try the HELP function
+HELP YYYYYYY
+HELP NNNNNNN
+HELP YNYNYNYN
+HELP NYNYNYNY
+* Try some warning cases for the NODE command
+NODE D D10 Q9 Y
+TEXT D D10 Oh no!!!!
+NODE Q Q8 Q5 Y
+PRINT
+* Delete Q3 from the tree
+DELETE Q3
+PRINT
+NODE D D5 Q2 N
+PRINT
+HELP NNNNNNN
+* Actually give Q2 a new N
+NODE D D11 Q2 N
+TEXT D D11 Time to party
+PRINT
+HELP NNNNNNN
+* Finished
